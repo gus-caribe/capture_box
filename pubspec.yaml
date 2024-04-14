@@ -1,0 +1,44 @@
+name: capture_box
+description: "A new Flutter plugin project."
+version: 0.1.0
+homepage:
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  image: ^4.1.7
+  pdf: ^3.10.8
+  printing: ^5.12.0
+  universal_html: ^2.2.4
+  path: ^1.8.3
+  path_provider: ^2.1.3
+  file_picker: ^8.0.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+
+# The following section is specific to Flutter packages.
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.caribesphaneron.sw.capture_box
+        pluginClass: CaptureBoxPlugin
+      linux:
+        pluginClass: CaptureBoxPlugin
+      windows:
+        pluginClass: CaptureBoxPluginCApi
+      web:
+        pluginClass: CaptureBoxWeb
+        fileName: capture_box_web.dart
+
