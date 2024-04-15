@@ -1,7 +1,7 @@
 name: capture_box
 description: "A new Flutter plugin project."
 version: 0.1.0
-homepage:
+repository: https://github.com/gus-caribe/capture_box.git
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
