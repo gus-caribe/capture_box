@@ -6,6 +6,15 @@
 ## Release `v0.1.0`
 &nbsp;&nbsp;&nbsp;&nbsp; This release includes the _Minimum Viable Product_, along with examples and Unit/Widget Tests.
 
+### `#3` Elaborate README
+> **Participants:** @gus-caribe
+
+&nbsp;&nbsp;&nbsp;&nbsp; Elaborated the README:
+
+- **Documentation:**
+
+    1. Elaborated the README.md;
+
 ### `#1` Inclusion of MVP
 > **Participants:** @gus-caribe
 
