@@ -60,7 +60,10 @@ void main() {
 
       expect(widgetTestFinder, findsOneWidget);
       expect(
-        () async => await controller.savePng(fileName: "test"), 
+        () async => await controller.savePng(
+          fileName: "test",
+          saveMode: SaveMode.appDocuments
+        ), 
         isA<void>()
       );
     });
@@ -73,7 +76,10 @@ void main() {
 
       expect(widgetTestFinder, findsOneWidget);
       expect(
-        () async => await controller.saveJpg(fileName: "test"), 
+        () async => await controller.saveJpg(
+          fileName: "test",
+          saveMode: SaveMode.appDocuments
+        ), 
         isA<void>()
       );
     });
@@ -90,6 +96,7 @@ void main() {
       await widgetTester.runAsync(
         () async => await controller.trySavePng(
           fileName: "test",
+          saveMode: SaveMode.appDocuments,
           onError: () => failed = true
         )
       );
@@ -109,6 +116,7 @@ void main() {
       await widgetTester.runAsync(
         () async => await controller.trySaveJpg(
           fileName: "test",
+          saveMode: SaveMode.appDocuments,
           onError: () => failed = true
         )
       );
@@ -130,6 +138,7 @@ void main() {
       await widgetTester.runAsync(
         () async => await unboundController.trySavePng(
           fileName: "test",
+          saveMode: SaveMode.appDocuments,
           onError: () => failed = true
         )
       );
@@ -151,6 +160,7 @@ void main() {
       await widgetTester.runAsync(
         () async => await unboundController.trySaveJpg(
           fileName: "test",
+          saveMode: SaveMode.appDocuments,
           onError: () => failed = true
         )
       );
@@ -167,7 +177,11 @@ void main() {
 
       expect(widgetTestFinder, findsOneWidget);
 
-      Uint8List? result = await controller.getPdf();
+      Uint8List? result;
+
+      await widgetTester.runAsync(
+        () async => result = await controller.getPdf()
+      );
 
       expect(result, isNotNull);
     });
@@ -179,7 +193,10 @@ void main() {
 
       expect(widgetTestFinder, findsOneWidget);
       expect(
-        () async => await controller.savePdf(fileName: "test"), 
+        () async => await controller.savePdf(
+          fileName: "test",
+          saveMode: SaveMode.appDocuments
+        ), 
         isA<void>()
       );
     });
@@ -193,9 +210,12 @@ void main() {
 
       bool failed = false;
 
-      await controller.trySavePdf(
-        fileName: "test",
-        onError: () => failed = true
+      await widgetTester.runAsync(
+        () async => await controller.trySavePdf(
+          fileName: "test",
+          saveMode: SaveMode.appDocuments,
+          onError: () => failed = true
+        )
       );
 
       expect(failed, isFalse);
@@ -210,9 +230,12 @@ void main() {
 
       bool failed = false;
 
-      await controller.trySavePdf(
-        fileName: "test",
-        onError: () => failed = true
+      await widgetTester.runAsync(
+        () async => await controller.trySavePdf(
+          fileName: "test",
+          saveMode: SaveMode.appDocuments,
+          onError: () => failed = true
+        )
       );
 
       expect(failed, isTrue);
