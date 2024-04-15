@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 alignment: Alignment.center,
-                child: Text(textTitleController.text),
+                child: Text("Example: ${textTitleController.text}"),
               ),
             ),
             Row(
