@@ -20,7 +20,10 @@ enum SaveMode {
   appDocuments
 }
 
-
+/// [CaptureBoxController] can be attached to a [CaptureBox] Widget, allowing to perform
+/// conversions with rendering outputs. It also allows saving the resulting byte lists
+/// into user-defined directories.
+/// 
 class CaptureBoxController {
   final GlobalKey _boxKey = GlobalKey();
   bool _attached = false;
@@ -50,6 +53,9 @@ class CaptureBoxController {
     return null;
   }
 
+  /// This method takes in a Uint8List and, based on the directive passed to `saveMode`,
+  /// it saves the binary data into a file.
+  /// 
   void saveBytes({
     required Uint8List byteList,
     required String fileName,
@@ -88,10 +94,22 @@ class CaptureBoxController {
     await file.writeAsBytes(byteList);
   }
 
+  /// This method outputs a nullable [Uint8List] representing the Widget wrapped by 
+  /// [CaptureBox] in the form of a PNG mime type. 
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method returns `null`.
+  /// 
   Future<Uint8List?> getPng() async {
     return await _widgetToPng();
   }
 
+  /// This method outputs a nullable [Uint8List] representing the Widget wrapped by 
+  /// [CaptureBox] in the form of a JPG mime type. 
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method returns `null`.
+  /// 
   Future<Uint8List?> getJpg({int quality = 100}) async {
     Uint8List? pngByteList = await getPng();
 
@@ -105,6 +123,12 @@ class CaptureBoxController {
     return null;
   }
 
+  /// This method saves into a PNG file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method throws an `Exception`.
+  /// 
   Future<void> savePng({
     required String fileName,
     SaveMode saveMode = SaveMode.filePicker,
@@ -127,6 +151,12 @@ class CaptureBoxController {
     throw Exception("An error occurred during the Widget conversion to PNG.");
   }
 
+  /// This method saves into a PNG file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method executes the callback passed to the `onError` argument.
+  /// 
   Future<void> trySavePng({
     required String fileName,
     SaveMode saveMode = SaveMode.filePicker,
@@ -146,6 +176,12 @@ class CaptureBoxController {
     }
   }
 
+  /// This method saves into a JPG file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method throws an `Exception`.
+  /// 
   Future<void> saveJpg({
     required String fileName,
     int quality = 100,
@@ -169,6 +205,12 @@ class CaptureBoxController {
     throw Exception("An error occurred during the Widget conversion to JPG.");
   }
 
+  /// This method saves into a JPG file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method executes the callback passed to the `onError` argument.
+  /// 
   Future<void> trySaveJpg({
     required String fileName,
     int quality = 100,
@@ -191,7 +233,10 @@ class CaptureBoxController {
   }
 }
 
-
+/// [CaptureBox] wraps the Widget passed to its `child` attribute, allowing calls coming
+/// from its `controller` to trigger a rendering task, resulting in a [Uint8List] that can
+/// be converted to several image and document file types.
+/// 
 class CaptureBox extends StatefulWidget {
   const CaptureBox({
     super.key,
