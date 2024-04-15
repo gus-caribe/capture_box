@@ -1,6 +1,6 @@
 name: capture_box
-description: "A new Flutter plugin project."
-version: 0.1.0
+description: "A Flutter package that turns your custom widgets into an image file."
+version: 1.0.0
 repository: https://github.com/gus-caribe/capture_box.git
 
 environment:

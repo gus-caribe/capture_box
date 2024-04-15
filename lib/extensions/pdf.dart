@@ -48,6 +48,12 @@ extension CaptureBoxControllerPdf on CaptureBoxController {
     return await doc.save();
   }
 
+  /// This method outputs a nullable [Uint8List] representing the Widget wrapped by 
+  /// [CaptureBox] in the form of a PDF mime type. 
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method returns `null`.
+  /// 
   Future<Uint8List?> getPdf({
     PdfPageMode pageMode = PdfPageMode.thumbs,
     bool compress = false,
@@ -83,6 +89,12 @@ extension CaptureBoxControllerPdf on CaptureBoxController {
     return null;
   }
 
+  /// This method saves into a PDF file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method throws an `Exception`.
+  /// 
   Future<void> savePdf({
     required String fileName,
     SaveMode saveMode = SaveMode.filePicker,
@@ -128,6 +140,12 @@ extension CaptureBoxControllerPdf on CaptureBoxController {
     throw Exception("An error occurred during the Widget conversion to PDF.");
   }
 
+  /// This method saves into a PDF file the binary data obtained from a widget rendering 
+  /// task, based on the directive passed to `saveMode`.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method executes the callback passed to the `onError` argument.
+  /// 
   Future<void> trySavePdf({
     required String fileName,
     SaveMode saveMode = SaveMode.filePicker,
@@ -169,6 +187,12 @@ extension CaptureBoxControllerPdf on CaptureBoxController {
     }
   }
 
+  /// This method takes the binary data obtained from a widget rendering task and renders 
+  /// it into a printing layout.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method throws an `Exception`.
+  /// 
   Future<void> printPdf({
     required String fileName,
     PdfPageMode pageMode = PdfPageMode.thumbs,
@@ -206,6 +230,12 @@ extension CaptureBoxControllerPdf on CaptureBoxController {
     }
   }
 
+  /// This method takes the binary data obtained from a widget rendering task and renders 
+  /// it into a printing layout.
+  /// 
+  /// If there is no Widget attached or if an error occurs during the convertion, this
+  /// method executes the callback passed to the `onError` argument.
+  /// 
   Future<void> tryPrintPdf({
     required String fileName,
     PdfPageMode pageMode = PdfPageMode.thumbs,
